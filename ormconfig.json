@@ -1,12 +1,12 @@
 {
   "type": "postgres",
+  "host": "api-ciclo-pagamentos-db",
   "port": 5432,
-  "host": "localhost",
-  "username": "docker",
+  "username": "postgres",
   "password": "docker",
-  "database": "api_pagamentose",
+  "database": "ciclo-pagamentos",
   "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
-  "entities": ["./src/modules/**/entities/*.ts"],
+  "entities": ["./src/modules/**/infra/typeorm/entities/*.ts"],
   "cli": {
     "migrationsDir": "./src/shared/infra/typeorm/migrations/"
   }

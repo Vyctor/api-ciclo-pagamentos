@@ -2,9 +2,6 @@ import express, { Request, Response } from 'express';
 
 import 'express-async-errors';
 import { AppError } from '../../errors/AppError';
-import createConnection from '../typeorm';
-
-createConnection();
 
 const app = express();
 
