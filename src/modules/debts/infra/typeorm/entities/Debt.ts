@@ -7,7 +7,7 @@ enum DebtStatus {
 }
 
 @Entity('debts')
-class Debit {
+class Debt {
   @PrimaryColumn()
   public id: string;
 
@@ -27,4 +27,4 @@ class Debit {
   public updated_at: Date;
 }
 
-export { Debit, DebtStatus };
+export { Debt, DebtStatus };
