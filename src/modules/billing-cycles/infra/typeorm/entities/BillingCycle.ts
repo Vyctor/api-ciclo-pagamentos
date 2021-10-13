@@ -12,7 +12,7 @@ class BillingCycle {
 
   public credits: Array<Credit>;
 
-  public debits: Array<Debt>;
+  public debts: Array<Debt>;
 }
 
 export { BillingCycle };

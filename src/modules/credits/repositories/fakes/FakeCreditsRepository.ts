@@ -6,7 +6,7 @@ import { AppError } from '../../../../shared/errors/AppError';
 import { ICreditsRepository } from '../ICreditsRepository';
 
 class FakeCreditsRepository implements ICreditsRepository {
-  public credits: Array<Credit> = [];
+  private credits: Array<Credit> = [];
 
   async create({ name, value }: ICreateCreditDTO): Promise<Credit> {
     const newCredit = new Credit();
