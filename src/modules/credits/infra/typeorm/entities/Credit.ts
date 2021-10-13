@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
+import { v4 as uuid } from 'uuid';
 
 @Entity('credits')
 class Credit {
@@ -14,8 +15,11 @@ class Credit {
   @CreateDateColumn()
   public created_at: Date;
 
-  @UpdateDateColumn()
-  public updated_at: Date;
+  constructor() {
+    if (!this.id) {
+      this.id = uuid();
+    }
+  }
 }
 
 export { Credit };

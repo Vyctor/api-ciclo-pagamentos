@@ -28,11 +28,6 @@ export class CreateDebts1634081640096 implements MigrationInterface {
             type: 'timestamp',
             default: 'now()',
           },
-          {
-            name: 'updated_at',
-            type: 'timestamp',
-            default: 'now()',
-          },
         ],
       }),
     );

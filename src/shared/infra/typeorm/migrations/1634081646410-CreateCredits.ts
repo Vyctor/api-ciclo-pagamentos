@@ -24,11 +24,6 @@ export class CreateCredits1634081646410 implements MigrationInterface {
             type: 'timestamp',
             default: 'now()',
           },
-          {
-            name: 'updated_at',
-            type: 'timestamp',
-            default: 'now()',
-          },
         ],
       }),
     );
