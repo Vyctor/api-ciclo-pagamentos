@@ -1,7 +1,7 @@
 interface IUpdateCreditDTO {
   id: string;
   name: string;
-  value: string;
+  value: number;
 }
 
 export { IUpdateCreditDTO };
