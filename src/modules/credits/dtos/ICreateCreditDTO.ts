@@ -1,6 +1,6 @@
 interface ICreateCreditDTO {
   name: string;
-  value: string;
+  value: number;
 }
 
 export { ICreateCreditDTO };

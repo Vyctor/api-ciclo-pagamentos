@@ -4,7 +4,7 @@ interface IUpdateDebtDTO {
   id: string;
   name: string;
   status: DebtStatus;
-  value: string;
+  value: number;
 }
 
 export { IUpdateDebtDTO };

@@ -48,3 +48,5 @@ class CreditsRepository implements ICreditsRepository {
     await this.repository.delete(id);
   }
 }
+
+export { CreditsRepository };
