@@ -1,8 +1,7 @@
-import { ICreateCreditDTO } from '@modules/credits/dtos/ICreateCreditDTO';
-import { IUpdateCreditDTO } from '@modules/credits/dtos/IUpdateCreditDTO';
-import { Credit } from '@modules/credits/infra/typeorm/entities/Credit';
-
 import { AppError } from '../../../../shared/errors/AppError';
+import { ICreateCreditDTO } from '../../dtos/ICreateCreditDTO';
+import { IUpdateCreditDTO } from '../../dtos/IUpdateCreditDTO';
+import { Credit } from '../../infra/typeorm/entities/Credit';
 import { ICreditsRepository } from '../ICreditsRepository';
 
 class FakeCreditsRepository implements ICreditsRepository {
