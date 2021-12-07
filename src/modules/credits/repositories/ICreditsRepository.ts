@@ -6,7 +6,7 @@ import { IUpdateCreditDTO } from '../dtos/IUpdateCreditDTO';
 interface ICreditsRepository {
   create(data: ICreateCreditDTO): Promise<Credit>;
   show(id: string): Promise<Credit>;
-  list(): Promise<Array<Credit>>;
+  list(): Promise<Credit[]>;
   update(data: IUpdateCreditDTO): Promise<Credit>;
   delete(id: string): Promise<void>;
 }
