@@ -15,4 +15,4 @@ class CreateCreditController {
   }
 }
 
-export default CreateCreditController;
+export { CreateCreditController };

@@ -13,4 +13,4 @@ class ListAllCreditsController {
   }
 }
 
-export default { ListAllCreditsController };
+export { ListAllCreditsController };
