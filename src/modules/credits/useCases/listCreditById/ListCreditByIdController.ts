@@ -1,16 +1,17 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { ListAllCreditsUseCase } from './ListAllCreditsUseCase';
+import { ListCreditByIdUseCase } from './ListCreditByIdUseCase';
 
-class ListAllCreditsController {
+class ListCreditByIdController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const listAllCreditsUseCase = container.resolve(ListAllCreditsUseCase);
+    const { id } = request.params;
+    const listAllCreditsUseCase = container.resolve(ListCreditByIdUseCase);
 
-    const credits = await listAllCreditsUseCase.execute();
+    const credit = await listAllCreditsUseCase.execute(id);
 
-    return response.status(201).json(credits);
+    return response.status(201).json(credit);
   }
 }
 
-export { ListAllCreditsController };
+export { ListCreditByIdController };
