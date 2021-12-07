@@ -1,4 +1,3 @@
-import { injectable } from 'tsyringe';
 import { getRepository, Repository } from 'typeorm';
 
 import { ICreateCreditDTO } from '@modules/credits/dtos/ICreateCreditDTO';
@@ -6,7 +5,6 @@ import { IUpdateCreditDTO } from '@modules/credits/dtos/IUpdateCreditDTO';
 import { Credit } from '@modules/credits/infra/typeorm/entities/Credit';
 import { ICreditsRepository } from '@modules/credits/repositories/ICreditsRepository';
 
-@injectable()
 class CreditsRepository implements ICreditsRepository {
   private repository: Repository<Credit>;
 

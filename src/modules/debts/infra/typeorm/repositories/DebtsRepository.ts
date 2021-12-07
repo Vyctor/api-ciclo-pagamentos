@@ -7,7 +7,6 @@ import { IDebtsRepository } from '@modules/debts/repositories/IDebtsRepository';
 
 import { Debt } from '../entities/Debt';
 
-@injectable()
 class DebtsRepository implements IDebtsRepository {
   private repository: Repository<Debt>;
 

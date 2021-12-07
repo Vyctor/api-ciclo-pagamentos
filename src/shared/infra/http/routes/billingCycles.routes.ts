@@ -6,3 +6,5 @@ billingCyclesRouter.post('/');
 billingCyclesRouter.get('/');
 billingCyclesRouter.patch('/');
 billingCyclesRouter.delete('/');
+
+export default billingCyclesRouter;

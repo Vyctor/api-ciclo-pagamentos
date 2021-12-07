@@ -1,9 +1,10 @@
-import { inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 
 import { ICreateCreditDTO } from '@modules/credits/dtos/ICreateCreditDTO';
 import { Credit } from '@modules/credits/infra/typeorm/entities/Credit';
 import { ICreditsRepository } from '@modules/credits/repositories/ICreditsRepository';
 
+@injectable()
 class CreateCreditUseCase {
   constructor(
     @inject('CreditsRepository')

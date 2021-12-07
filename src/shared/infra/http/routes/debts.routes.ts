@@ -6,3 +6,5 @@ debtsRouter.post('/');
 debtsRouter.get('/');
 debtsRouter.patch('/');
 debtsRouter.delete('/');
+
+export default debtsRouter;

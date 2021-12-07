@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
+import creditsRouter from './credits.routes';
+
 const routes = Router();
 
-routes.use('/credits');
-routes.use('/debts');
-routes.use('/billingCycles');
+routes.use('/credits', creditsRouter);
 
 export default routes;
