@@ -1,8 +1,8 @@
 import { ICreateDebtDTO } from '@modules/debts/dtos/ICreateDebtDTO';
 import { IUpdateDebtDTO } from '@modules/debts/dtos/IUpdateDebtDTO';
-import { Debt, DebtStatus } from '@modules/debts/infra/typeorm/entities/Debt';
 
 import { AppError } from '../../../../shared/errors/AppError';
+import { Debt, DebtStatus } from '../../infra/typeorm/entities/Debt';
 import { IDebtsRepository } from '../IDebtsRepository';
 
 class FakeDebtsRepository implements IDebtsRepository {

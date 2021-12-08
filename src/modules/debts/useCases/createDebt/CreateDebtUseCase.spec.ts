@@ -1,5 +1,6 @@
 import { ICreateDebtDTO } from '@modules/debts/dtos/ICreateDebtDTO';
 
+import { Debt } from '../../infra/typeorm/entities/Debt';
 import { FakeDebtsRepository } from '../../repositories/fakes/FakeDebtsRepository';
 import { CreateDebtUseCase } from './CreateDebtUseCase';
 
@@ -20,7 +21,9 @@ describe('Create Debt', () => {
 
     const response = await createDebtUseCase.execute(debt);
 
-    expect(response).toBeInstanceOf(debt);
+    console.log(response);
+
+    expect(response).toBeInstanceOf(Debt);
     expect(response).toHaveProperty('id');
   });
 });

@@ -1,5 +1,4 @@
-import { FakeDebtsRepository } from '@modules/debts/repositories/fakes/FakeDebtsRepository';
-
+import { FakeDebtsRepository } from '../../repositories/fakes/FakeDebtsRepository';
 import { CreateDebtUseCase } from '../createDebt/CreateDebtUseCase';
 import { ListDebtByIdUseCase } from '../listDebtsById/ListDebtByIdUseCase';
 import { DeleteDebtUseCase } from './DeleteDebtUseCase';
