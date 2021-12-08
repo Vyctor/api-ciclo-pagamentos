@@ -15,6 +15,6 @@ const deleteDebtController = new DeleteDebtController();
 debtsRouter.post('/', createDebtController.handle);
 debtsRouter.get('/', listAllDebtController.handle);
 debtsRouter.get('/:id', listDebtByIdController.handle);
-debtsRouter.delete('/', deleteDebtController.handle);
+debtsRouter.delete('/:id', deleteDebtController.handle);
 
 export default debtsRouter;
