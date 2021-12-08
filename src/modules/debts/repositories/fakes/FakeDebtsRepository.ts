@@ -1,6 +1,6 @@
 import { ICreateDebtDTO } from '@modules/debts/dtos/ICreateDebtDTO';
 import { IUpdateDebtDTO } from '@modules/debts/dtos/IUpdateDebtDTO';
-import { Debt } from '@modules/debts/infra/typeorm/entities/Debt';
+import { Debt, DebtStatus } from '@modules/debts/infra/typeorm/entities/Debt';
 
 import { AppError } from '../../../../shared/errors/AppError';
 import { IDebtsRepository } from '../IDebtsRepository';
@@ -8,13 +8,13 @@ import { IDebtsRepository } from '../IDebtsRepository';
 class FakeDebtsRepository implements IDebtsRepository {
   private debts: Array<Debt> = [];
 
-  async create({ name, value, status }: ICreateDebtDTO): Promise<Debt> {
+  async create({ name, value }: ICreateDebtDTO): Promise<Debt> {
     const newDebt = new Debt();
 
     Object.assign(newDebt, {
       name,
       value,
-      status,
+      status: DebtStatus.AGENDADO,
     });
 
     this.debts.push(newDebt);
