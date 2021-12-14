@@ -21,8 +21,6 @@ describe('Create Debt', () => {
 
     const response = await createDebtUseCase.execute(debt);
 
-    console.log(response);
-
     expect(response).toBeInstanceOf(Debt);
     expect(response).toHaveProperty('id');
   });

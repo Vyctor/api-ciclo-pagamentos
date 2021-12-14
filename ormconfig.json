@@ -5,6 +5,9 @@
   "username": "postgres",
   "password": "docker",
   "database": "ciclo-pagamentos",
+  "logging": false,
+  "synchronize": true,
+  "bigNumberStrings": false,
   "migrations": ["./src/shared/infra/typeorm/migrations/*.ts"],
   "entities": ["./src/modules/**/infra/typeorm/entities/*.ts"],
   "cli": {
