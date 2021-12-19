@@ -4,6 +4,7 @@ import { ICreateCreditDTO } from '@modules/credits/dtos/ICreateCreditDTO';
 import { Credit } from '@modules/credits/infra/typeorm/entities/Credit';
 import { ICreditsRepository } from '@modules/credits/repositories/ICreditsRepository';
 
+import RedisCache from '../../../../shared/cache/RedisCache';
 import { AppError } from '../../../../shared/errors/AppError';
 
 @injectable()
@@ -17,6 +18,8 @@ class CreateCreditUseCase {
     if (value <= 0) {
       throw new AppError('Value must be greater or equal zero.');
     }
+
+    await RedisCache.invalidate('api-ciclo-pagamentos-CREDITS_LIST');
     return this.creditsRepository.create({ name, value });
   }
 }
