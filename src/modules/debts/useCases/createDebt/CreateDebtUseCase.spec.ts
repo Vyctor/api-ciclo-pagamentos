@@ -1,5 +1,6 @@
 import { ICreateDebtDTO } from '@modules/debts/dtos/ICreateDebtDTO';
 
+import { AppError } from '../../../../shared/errors/AppError';
 import { Debt } from '../../infra/typeorm/entities/Debt';
 import { FakeDebtsRepository } from '../../repositories/fakes/FakeDebtsRepository';
 import { CreateDebtUseCase } from './CreateDebtUseCase';
@@ -23,5 +24,14 @@ describe('Create Debt', () => {
 
     expect(response).toBeInstanceOf(Debt);
     expect(response).toHaveProperty('id');
+  });
+
+  test('should not be able to create a debt if value less than or equal to zero', async () => {
+    expect(async () => {
+      await createDebtUseCase.execute({
+        name: 'Payment',
+        value: -3700,
+      });
+    }).rejects.toBeInstanceOf(AppError);
   });
 });
