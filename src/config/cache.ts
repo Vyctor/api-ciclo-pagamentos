@@ -10,8 +10,8 @@ interface ICacheConfig {
 const redisCache = {
   config: {
     redis: {
-      host: process.env.REDIS_HOST,
-      port: Number(process.env.REDIS_PORT),
+      host: 'api-ciclo-pagamentos-redis',
+      port: 6379,
       password: process.env.REDIS_PASS || undefined,
     },
   },
