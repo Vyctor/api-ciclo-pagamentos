@@ -1,5 +1,6 @@
 import { ICreateCreditDTO } from '@modules/credits/dtos/ICreateCreditDTO';
 
+import FakeCacheProvider from '../../../../shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import { AppError } from '../../../../shared/errors/AppError';
 import { Credit } from '../../infra/typeorm/entities/Credit';
 import { FakeCreditsRepository } from '../../repositories/fakes/FakeCreditsRepository';
@@ -7,11 +8,13 @@ import { CreateCreditUseCase } from './CreateCreditUseCase';
 
 let fakeCreditsRepository: FakeCreditsRepository;
 let createCreditUseCase: CreateCreditUseCase;
+let cacheProvider: FakeCacheProvider;
 
 describe('Create Credit', () => {
   beforeEach(() => {
     fakeCreditsRepository = new FakeCreditsRepository();
-    createCreditUseCase = new CreateCreditUseCase(fakeCreditsRepository);
+    cacheProvider = new FakeCacheProvider();
+    createCreditUseCase = new CreateCreditUseCase(cacheProvider, fakeCreditsRepository);
   });
 
   test('should be able to create a credit ', async () => {

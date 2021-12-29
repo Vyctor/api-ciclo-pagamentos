@@ -3,13 +3,15 @@ import { inject, injectable } from 'tsyringe';
 import { ICreateCreditDTO } from '@modules/credits/dtos/ICreateCreditDTO';
 import { Credit } from '@modules/credits/infra/typeorm/entities/Credit';
 import { ICreditsRepository } from '@modules/credits/repositories/ICreditsRepository';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
-import RedisCache from '../../../../shared/cache/RedisCache';
 import { AppError } from '../../../../shared/errors/AppError';
 
 @injectable()
 class CreateCreditUseCase {
   constructor(
+    @inject('CacheProvider')
+    private readonly cacheProvider: ICacheProvider,
     @inject('CreditsRepository')
     private readonly creditsRepository: ICreditsRepository,
   ) {}
@@ -19,7 +21,7 @@ class CreateCreditUseCase {
       throw new AppError('Value must be greater or equal zero.');
     }
 
-    await RedisCache.invalidate('api-ciclo-pagamentos-CREDITS_LIST');
+    await this.cacheProvider.invalidate('api-ciclo-pagamentos-CREDITS_LIST');
     return this.creditsRepository.create({ name, value });
   }
 }

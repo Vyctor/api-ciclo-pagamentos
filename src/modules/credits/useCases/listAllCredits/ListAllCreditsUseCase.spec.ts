@@ -1,3 +1,4 @@
+import FakeCacheProvider from '../../../../shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import { FakeCreditsRepository } from '../../repositories/fakes/FakeCreditsRepository';
 import { CreateCreditUseCase } from '../createCredit/CreateCreditUseCase';
 import { ListAllCreditsUseCase } from './ListAllCreditsUseCase';
@@ -5,12 +6,14 @@ import { ListAllCreditsUseCase } from './ListAllCreditsUseCase';
 let fakeCreditsRepository: FakeCreditsRepository;
 let listAllCreditsUseCase: ListAllCreditsUseCase;
 let createCreditUseCase: CreateCreditUseCase;
+let cacheProvider: FakeCacheProvider;
 
 describe('List all credits', () => {
   beforeEach(() => {
     fakeCreditsRepository = new FakeCreditsRepository();
-    listAllCreditsUseCase = new ListAllCreditsUseCase(fakeCreditsRepository);
-    createCreditUseCase = new CreateCreditUseCase(fakeCreditsRepository);
+    cacheProvider = new FakeCacheProvider();
+    listAllCreditsUseCase = new ListAllCreditsUseCase(cacheProvider, fakeCreditsRepository);
+    createCreditUseCase = new CreateCreditUseCase(cacheProvider, fakeCreditsRepository);
   });
 
   test('should be able to list all credits', async () => {

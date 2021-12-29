@@ -2,22 +2,23 @@ import { inject, injectable } from 'tsyringe';
 
 import { Credit } from '@modules/credits/infra/typeorm/entities/Credit';
 import { ICreditsRepository } from '@modules/credits/repositories/ICreditsRepository';
-
-import RedisCache from '../../../../shared/cache/RedisCache';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 @injectable()
 class ListAllCreditsUseCase {
   constructor(
+    @inject('CacheProvider')
+    private readonly cacheProvider: ICacheProvider,
     @inject('CreditsRepository')
     private readonly creditsRepository: ICreditsRepository,
   ) {}
 
   public async execute(): Promise<Credit[]> {
-    let credits = await RedisCache.recover<Credit[]>('api-ciclo-pagamentos-CREDITS_LIST');
+    let credits = await this.cacheProvider.recover<Credit[]>('api-ciclo-pagamentos-CREDITS_LIST');
 
     if (!credits) {
       credits = await this.creditsRepository.list();
-      await RedisCache.save('api-ciclo-pagamentos-CREDITS_LIST', credits);
+      await this.cacheProvider.save('api-ciclo-pagamentos-CREDITS_LIST', credits);
       return credits;
     }
 

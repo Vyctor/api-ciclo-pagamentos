@@ -1,21 +1,21 @@
 import { RedisOptions } from 'ioredis';
 
 interface ICacheConfig {
+  driver: 'redis';
   config: {
     redis: RedisOptions;
   };
-  driver: string;
 }
 
 const redisCache = {
+  driver: 'redis',
   config: {
     redis: {
       host: 'api-ciclo-pagamentos-redis',
       port: 6379,
-      password: process.env.REDIS_PASS || undefined,
+      password: '',
     },
   },
-  driver: 'redis',
 } as ICacheConfig;
 
 export default redisCache;

@@ -1,5 +1,6 @@
 import { ICreateDebtDTO } from '@modules/debts/dtos/ICreateDebtDTO';
 
+import FakeCacheProvider from '../../../../shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import { AppError } from '../../../../shared/errors/AppError';
 import { Debt } from '../../infra/typeorm/entities/Debt';
 import { FakeDebtsRepository } from '../../repositories/fakes/FakeDebtsRepository';
@@ -7,11 +8,13 @@ import { CreateDebtUseCase } from './CreateDebtUseCase';
 
 let fakeDebtsRepository: FakeDebtsRepository;
 let createDebtUseCase: CreateDebtUseCase;
+let cacheProvider: FakeCacheProvider;
 
 describe('Create Debt', () => {
   beforeEach(() => {
     fakeDebtsRepository = new FakeDebtsRepository();
-    createDebtUseCase = new CreateDebtUseCase(fakeDebtsRepository);
+    cacheProvider = new FakeCacheProvider();
+    createDebtUseCase = new CreateDebtUseCase(cacheProvider, fakeDebtsRepository);
   });
 
   test('should be able to create a debt ', async () => {

@@ -1,5 +1,7 @@
 import { container } from 'tsyringe';
 
+import './providers';
+
 import { CreditsRepository } from '@modules/credits/infra/typeorm/repositories/CreditsRepository';
 import { ICreditsRepository } from '@modules/credits/repositories/ICreditsRepository';
 import { DebtsRepository } from '@modules/debts/infra/typeorm/repositories/DebtsRepository';
