@@ -15,7 +15,7 @@ class ListAllDebtsUseCase {
   ) {}
 
   public async execute(): Promise<Debt[]> {
-    const debts = await this.cacheProvider.recover<Debt[]>('api-ciclo-pagamentos-CREDITS_LIST');
+    const debts = await this.cacheProvider.recover<Debt[]>('api-ciclo-pagamentos-DEBTS_LIST');
 
     if (!debts) {
       const debts = this.debtsRepository.list();
