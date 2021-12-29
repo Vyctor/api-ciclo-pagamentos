@@ -15,11 +15,14 @@ class ListAllDebtsUseCase {
   ) {}
 
   public async execute(): Promise<Debt[]> {
-    const debts = await this.cacheProvider.recover<Debt[]>('api-ciclo-pagamentos-DEBTS_LIST');
+    let debts = await this.cacheProvider.recover<Debt[]>('api-ciclo-pagamentos-DEBTS_LIST');
 
     if (!debts) {
-      const debts = this.debtsRepository.list();
-      await this.cacheProvider.save('api-ciclo-pagamentos-DEBTS_LIST', debts);
+      debts = await this.debtsRepository.list();
+
+      if (debts.length > 0) {
+        await this.cacheProvider.save('api-ciclo-pagamentos-DEBTS_LIST', debts);
+      }
       return debts;
     }
     return debts;
