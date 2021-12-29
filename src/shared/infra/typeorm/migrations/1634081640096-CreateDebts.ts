@@ -24,6 +24,11 @@ export class CreateDebts1634081640096 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'date',
+            type: 'timestamp',
+            isNullable: false,
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',

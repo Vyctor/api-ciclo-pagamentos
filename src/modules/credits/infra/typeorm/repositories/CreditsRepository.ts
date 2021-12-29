@@ -12,11 +12,12 @@ class CreditsRepository implements ICreditsRepository {
     this.repository = getRepository(Credit);
   }
 
-  async create({ name, value }: ICreateCreditDTO): Promise<Credit> {
+  async create({ name, value, date }: ICreateCreditDTO): Promise<Credit> {
     const credit = new Credit();
     Object.assign(credit, {
       name,
       value,
+      date,
     });
 
     return this.repository.save(credit);
@@ -30,14 +31,12 @@ class CreditsRepository implements ICreditsRepository {
     return this.repository.find();
   }
 
-  async update({ id, name, value }: IUpdateCreditDTO): Promise<Credit> {
-    await this.repository.update(
-      { id },
-      {
-        name,
-        value,
-      },
-    );
+  async update({ id, name, value, date }: IUpdateCreditDTO): Promise<Credit> {
+    await this.repository.update(id, {
+      name,
+      value,
+      date,
+    });
 
     return this.repository.findOne(id);
   }

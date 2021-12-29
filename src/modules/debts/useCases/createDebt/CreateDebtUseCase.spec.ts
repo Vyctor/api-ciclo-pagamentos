@@ -21,6 +21,7 @@ describe('Create Debt', () => {
     const debt: ICreateDebtDTO = {
       name: 'Payment',
       value: 3700,
+      date: new Date(),
     };
 
     const response = await createDebtUseCase.execute(debt);
@@ -34,6 +35,7 @@ describe('Create Debt', () => {
       await createDebtUseCase.execute({
         name: 'Payment',
         value: -3700,
+        date: new Date(),
       });
     }).rejects.toBeInstanceOf(AppError);
   });

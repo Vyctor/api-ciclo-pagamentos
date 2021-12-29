@@ -16,13 +16,13 @@ class CreateCreditUseCase {
     private readonly creditsRepository: ICreditsRepository,
   ) {}
 
-  public async execute({ name, value }: ICreateCreditDTO): Promise<Credit> {
+  public async execute({ name, value, date }: ICreateCreditDTO): Promise<Credit> {
     if (value <= 0) {
       throw new AppError('Value must be greater or equal zero.');
     }
 
     await this.cacheProvider.invalidate('api-ciclo-pagamentos-CREDITS_LIST');
-    return this.creditsRepository.create({ name, value });
+    return this.creditsRepository.create({ name, value, date });
   }
 }
 

@@ -5,6 +5,7 @@ interface IUpdateDebtDTO {
   name: string;
   status: DebtStatus;
   value: number;
+  date: Date;
 }
 
 export { IUpdateDebtDTO };

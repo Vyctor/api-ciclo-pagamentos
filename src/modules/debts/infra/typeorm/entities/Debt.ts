@@ -21,6 +21,9 @@ class Debt {
   @Column()
   public value: number;
 
+  @Column()
+  public date: Date;
+
   @CreateDateColumn()
   public created_at: Date;
 

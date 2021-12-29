@@ -20,7 +20,7 @@ describe('List all credits', () => {
   });
 
   test('should be able to delete a existant credit', async () => {
-    const newCredit1 = await createCreditUseCase.execute({ name: 'Teste1', value: 5000 });
+    const newCredit1 = await createCreditUseCase.execute({ name: 'Teste1', value: 5000, date: new Date() });
 
     await deleteCreditUseCase.execute(newCredit1.id);
 

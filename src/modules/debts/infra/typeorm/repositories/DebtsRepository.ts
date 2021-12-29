@@ -1,4 +1,3 @@
-import { injectable } from 'tsyringe';
 import { getRepository, Repository } from 'typeorm';
 
 import { ICreateDebtDTO } from '@modules/debts/dtos/ICreateDebtDTO';
@@ -14,13 +13,14 @@ class DebtsRepository implements IDebtsRepository {
     this.repository = getRepository(Debt);
   }
 
-  async create({ name, value }: ICreateDebtDTO): Promise<Debt> {
+  async create({ name, value, date }: ICreateDebtDTO): Promise<Debt> {
     const debt = new Debt();
 
     Object.assign(debt, {
       name,
       status: DebtStatus.AGENDADO,
       value,
+      date,
     });
 
     return this.repository.save(debt);
@@ -34,8 +34,8 @@ class DebtsRepository implements IDebtsRepository {
     return this.repository.find();
   }
 
-  async update({ id, name, status, value }: IUpdateDebtDTO): Promise<Debt> {
-    await this.repository.update(id, { name, status, value });
+  async update({ id, name, status, value, date }: IUpdateDebtDTO): Promise<Debt> {
+    await this.repository.update(id, { name, status, value, date });
 
     return this.repository.findOne(id);
   }

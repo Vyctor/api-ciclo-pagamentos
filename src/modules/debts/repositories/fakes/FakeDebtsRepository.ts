@@ -8,13 +8,14 @@ import { IDebtsRepository } from '../IDebtsRepository';
 class FakeDebtsRepository implements IDebtsRepository {
   private debts: Array<Debt> = [];
 
-  async create({ name, value }: ICreateDebtDTO): Promise<Debt> {
+  async create({ name, value, date }: ICreateDebtDTO): Promise<Debt> {
     const newDebt = new Debt();
 
     Object.assign(newDebt, {
       name,
       value,
       status: DebtStatus.AGENDADO,
+      date,
     });
 
     this.debts.push(newDebt);
@@ -30,7 +31,7 @@ class FakeDebtsRepository implements IDebtsRepository {
     return this.debts;
   }
 
-  async update({ id, name, value, status }: IUpdateDebtDTO): Promise<Debt> {
+  async update({ id, name, value, status, date }: IUpdateDebtDTO): Promise<Debt> {
     const debtIndex = this.debts.findIndex((debt) => debt.id === id);
 
     if (!debtIndex) {
@@ -41,6 +42,7 @@ class FakeDebtsRepository implements IDebtsRepository {
       name,
       value,
       status,
+      date,
     });
 
     return this.debts[debtIndex];

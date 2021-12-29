@@ -17,7 +17,7 @@ describe('List all debts', () => {
   });
 
   test('should be able to find a debt by id', async () => {
-    const newDebt = await createDebtUseCase.execute({ name: 'Teste1', value: 5000 });
+    const newDebt = await createDebtUseCase.execute({ name: 'Teste1', value: 5000, date: new Date() });
 
     const debtFinded = await listDebtByIdUseCase.execute(newDebt.id);
 

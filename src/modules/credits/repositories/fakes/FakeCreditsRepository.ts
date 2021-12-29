@@ -7,12 +7,13 @@ import { ICreditsRepository } from '../ICreditsRepository';
 class FakeCreditsRepository implements ICreditsRepository {
   private credits: Array<Credit> = [];
 
-  async create({ name, value }: ICreateCreditDTO): Promise<Credit> {
+  async create({ name, value, date }: ICreateCreditDTO): Promise<Credit> {
     const newCredit = new Credit();
 
     Object.assign(newCredit, {
       name,
       value,
+      date,
     });
 
     this.credits.push(newCredit);

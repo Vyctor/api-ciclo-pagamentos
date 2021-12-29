@@ -17,7 +17,7 @@ describe('List all credits', () => {
   });
 
   test('should be able to find a credit by id', async () => {
-    const newCredit = await createCreditUseCase.execute({ name: 'Teste1', value: 5000 });
+    const newCredit = await createCreditUseCase.execute({ name: 'Teste1', value: 5000, date: new Date() });
 
     const creditFinded = await listCreditByIdUseCase.execute(newCredit.id);
 

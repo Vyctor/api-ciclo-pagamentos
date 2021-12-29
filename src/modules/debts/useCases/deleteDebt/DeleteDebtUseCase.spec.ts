@@ -20,7 +20,7 @@ describe('List all debts', () => {
   });
 
   test('should be able to delete a existant debt', async () => {
-    const newDebt = await createDebtUseCase.execute({ name: 'Teste1', value: 5000 });
+    const newDebt = await createDebtUseCase.execute({ name: 'Teste1', value: 5000, date: new Date() });
 
     await deleteDebtUseCase.execute(newDebt.id);
 

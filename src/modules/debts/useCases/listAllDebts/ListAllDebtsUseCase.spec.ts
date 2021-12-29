@@ -17,10 +17,10 @@ describe('List all debts', () => {
   });
 
   test('should be able to list all debts', async () => {
-    createDebtUseCase.execute({ name: 'Teste1', value: 5000 });
-    createDebtUseCase.execute({ name: 'Teste2', value: 5000 });
-    createDebtUseCase.execute({ name: 'Teste3', value: 5000 });
-    createDebtUseCase.execute({ name: 'Teste4', value: 5000 });
+    createDebtUseCase.execute({ name: 'Teste1', value: 5000, date: new Date() });
+    createDebtUseCase.execute({ name: 'Teste2', value: 5000, date: new Date() });
+    createDebtUseCase.execute({ name: 'Teste3', value: 5000, date: new Date() });
+    createDebtUseCase.execute({ name: 'Teste4', value: 5000, date: new Date() });
 
     const debts = await listAllDebtsUseCase.execute();
 

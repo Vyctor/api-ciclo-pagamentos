@@ -5,11 +5,11 @@ import { CreateCreditUseCase } from '@modules/credits/useCases/createCredit/Crea
 
 class CreateCreditController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { name, value } = request.body;
+    const { name, value, date } = request.body;
 
     const createCreditUseCase = container.resolve(CreateCreditUseCase);
 
-    const credit = await createCreditUseCase.execute({ name, value });
+    const credit = await createCreditUseCase.execute({ name, value, date });
 
     return response.status(201).json(credit);
   }

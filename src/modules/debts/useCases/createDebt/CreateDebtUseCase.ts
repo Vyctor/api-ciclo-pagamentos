@@ -16,14 +16,14 @@ class CreateDebtUseCase {
     private readonly debtsRepository: IDebtsRepository,
   ) {}
 
-  public async execute({ name, value }: ICreateDebtDTO): Promise<Debt> {
+  public async execute({ name, value, date }: ICreateDebtDTO): Promise<Debt> {
     if (value <= 0) {
       throw new AppError('Value must be greater or equal zero.');
     }
 
     await this.cacheProvider.invalidate('api-ciclo-pagamentos-DEBTS_LIST');
 
-    return this.debtsRepository.create({ name, value });
+    return this.debtsRepository.create({ name, value, date });
   }
 }
 

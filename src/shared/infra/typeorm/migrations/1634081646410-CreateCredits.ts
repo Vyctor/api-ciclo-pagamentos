@@ -20,6 +20,11 @@ export class CreateCredits1634081646410 implements MigrationInterface {
             type: 'numeric',
           },
           {
+            name: 'date',
+            type: 'timestamp',
+            isNullable: false,
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',
