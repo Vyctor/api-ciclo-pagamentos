@@ -18,12 +18,9 @@ class ListAllCreditsUseCase {
 
     if (!credits) {
       credits = await this.creditsRepository.list();
-      if (credits.length > 0) {
-        await this.cacheProvider.save('api-ciclo-pagamentos-CREDITS_LIST', credits);
-      }
+      await this.cacheProvider.save('api-ciclo-pagamentos-CREDITS_LIST', credits.length > 0 ? credits : Array<Credit>());
       return credits;
     }
-
     return credits;
   }
 }

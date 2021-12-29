@@ -20,9 +20,7 @@ class ListAllDebtsUseCase {
     if (!debts) {
       debts = await this.debtsRepository.list();
 
-      if (debts.length > 0) {
-        await this.cacheProvider.save('api-ciclo-pagamentos-DEBTS_LIST', debts);
-      }
+      await this.cacheProvider.save('api-ciclo-pagamentos-DEBTS_LIST', debts.length > 0 ? debts : Array<Debt>());
       return debts;
     }
     return debts;
