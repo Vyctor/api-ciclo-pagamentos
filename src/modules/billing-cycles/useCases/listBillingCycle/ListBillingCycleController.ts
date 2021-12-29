@@ -15,7 +15,7 @@ class ListBillingCycleController {
     const listAllCreditsUseCase = container.resolve(ListAllCreditsUseCase);
     const listAllDebtsUseCase = container.resolve(ListAllDebtsUseCase);
 
-    const credits = await (await listAllCreditsUseCase.execute())
+    const credits = (await listAllCreditsUseCase.execute())
       .map((item) => item.value)
       .reduce((next, prev) => Number(next) + Number(prev), 0);
 
