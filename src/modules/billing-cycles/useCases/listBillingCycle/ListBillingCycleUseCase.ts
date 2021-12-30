@@ -4,9 +4,14 @@ import { IListBillingCycle } from '@modules/billing-cycles/dtos/IListBillingCycl
 import { ListAllCreditsUseCase } from '@modules/credits/useCases/listAllCredits/ListAllCreditsUseCase';
 import { ListAllDebtsUseCase } from '@modules/debts/useCases/listAllDebts/ListAllDebtsUseCase';
 
+interface IRequest {
+  initialDate: string;
+  finalDate: string;
+}
+
 @injectable()
 class ListBillingCycleUseCase {
-  public async execute(): Promise<IListBillingCycle> {
+  public async execute({ initialDate, finalDate }: IRequest): Promise<IListBillingCycle> {
     const listAllCreditsUseCase = container.resolve(ListAllCreditsUseCase);
     const listAllDebtsUseCase = container.resolve(ListAllDebtsUseCase);
 
