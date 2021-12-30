@@ -1,8 +1,8 @@
 import { container, injectable } from 'tsyringe';
 
 import { IListBillingCycle } from '@modules/billing-cycles/dtos/IListBillingCycle';
-import { ListAllCreditsUseCase } from '@modules/credits/useCases/listAllCredits/ListAllCreditsUseCase';
-import { ListAllDebtsUseCase } from '@modules/debts/useCases/listAllDebts/ListAllDebtsUseCase';
+import { ListAllCreditsBetweenTwoDatesUseCase } from '@modules/credits/useCases/listAllCreditsBetweenTwoDates/ListAllCreditsBetweenTwoDatesUseCase';
+import { ListAllDebtsBetweenTwoDatesUseCase } from '@modules/debts/useCases/listAllDebtsBetweenTwoDates/ListAllDebtsBetweenTwoDatesUseCase';
 
 interface IRequest {
   initialDate: string;
@@ -12,11 +12,17 @@ interface IRequest {
 @injectable()
 class ListBillingCycleUseCase {
   public async execute({ initialDate, finalDate }: IRequest): Promise<IListBillingCycle> {
-    const listAllCreditsUseCase = container.resolve(ListAllCreditsUseCase);
-    const listAllDebtsUseCase = container.resolve(ListAllDebtsUseCase);
+    const listAllCreditsBetweenTwoDatesUseCase = container.resolve(ListAllCreditsBetweenTwoDatesUseCase);
+    const listAllDebtsBetweenTwoDatesUseCase = container.resolve(ListAllDebtsBetweenTwoDatesUseCase);
 
-    const credits = await listAllCreditsUseCase.execute();
-    const debts = await listAllDebtsUseCase.execute();
+    const credits = await listAllCreditsBetweenTwoDatesUseCase.execute({
+      start: new Date(initialDate),
+      end: new Date(finalDate),
+    });
+    const debts = await listAllDebtsBetweenTwoDatesUseCase.execute({
+      start: new Date(initialDate),
+      end: new Date(finalDate),
+    });
 
     const totalDebts = debts.map((debt) => debt.value).reduce((next, prev) => next + prev, 0);
     const totalCredits = credits.map((credit) => credit.value).reduce((next, prev) => next + prev, 0);
