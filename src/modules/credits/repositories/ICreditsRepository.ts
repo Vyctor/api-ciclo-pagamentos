@@ -7,6 +7,7 @@ interface ICreditsRepository {
   create(data: ICreateCreditDTO): Promise<Credit>;
   show(id: string): Promise<Credit>;
   list(): Promise<Credit[]>;
+  listAllCreditsBetweenTwoDates(start: Date, end: Date): Promise<Credit[]>;
   update(data: IUpdateCreditDTO): Promise<Credit>;
   delete(id: string): Promise<void>;
 }
