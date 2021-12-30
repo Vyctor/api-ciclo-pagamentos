@@ -7,6 +7,7 @@ interface IDebtsRepository {
   create(data: ICreateDebtDTO): Promise<Debt>;
   show(id: string): Promise<Debt>;
   list(): Promise<Array<Debt>>;
+  listAllDebtsBetweenTwoDates(start: Date, end: Date): Promise<Debt[]>;
   update(data: IUpdateDebtDTO): Promise<Debt>;
   delete(id: string): Promise<void>;
 }

@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { Between, getRepository, Repository } from 'typeorm';
 
 import { ICreateDebtDTO } from '@modules/debts/dtos/ICreateDebtDTO';
 import { IUpdateDebtDTO } from '@modules/debts/dtos/IUpdateDebtDTO';
@@ -34,9 +34,14 @@ class DebtsRepository implements IDebtsRepository {
     return this.repository.find();
   }
 
+  async listAllDebtsBetweenTwoDates(start: Date, end: Date): Promise<Debt[]> {
+    return this.repository.find({
+      date: Between(start, end),
+    });
+  }
+
   async update({ id, name, status, value, date }: IUpdateDebtDTO): Promise<Debt> {
     await this.repository.update(id, { name, status, value, date });
-
     return this.repository.findOne(id);
   }
 

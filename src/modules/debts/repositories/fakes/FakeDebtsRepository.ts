@@ -1,3 +1,5 @@
+import { isWithinInterval } from 'date-fns';
+
 import { ICreateDebtDTO } from '@modules/debts/dtos/ICreateDebtDTO';
 import { IUpdateDebtDTO } from '@modules/debts/dtos/IUpdateDebtDTO';
 
@@ -29,6 +31,15 @@ class FakeDebtsRepository implements IDebtsRepository {
 
   async list(): Promise<Debt[]> {
     return this.debts;
+  }
+
+  async listAllDebtsBetweenTwoDates(start: Date, end: Date): Promise<Debt[]> {
+    return this.debts.filter((debt) => {
+      return isWithinInterval(debt.date, {
+        start,
+        end,
+      });
+    });
   }
 
   async update({ id, name, value, status, date }: IUpdateDebtDTO): Promise<Debt> {
